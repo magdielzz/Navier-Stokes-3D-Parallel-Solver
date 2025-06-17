@@ -2,12 +2,12 @@
 
 ## Resumen del Proyecto
 
-Este proyecto implementa un solvedor paralelo para las ecuaciones de Navier-Stokes en 3D en forma de vorticidad usando un método pseudo-espectral. La simulación evoluciona un campo de vorticidad tridimensional en un dominio periódico, inicializado con un anillo vortical Gaussiano, e incluye una pequeña viscosidad y un término de forzado sinusoidal. El solvedor paraleliza los cálculos entre múltiples procesos usando MPI, con FFTs distribuidas mediante la librería `mpi4py`. El campo final de vorticidad (componente \( \omega_z \)) se visualiza como una representación volumétrica o de contornos en 3D.
+Este proyecto implementa un solvedor paralelo para las ecuaciones de Navier-Stokes en 3D en forma de vorticidad usando un método pseudo-espectral. La simulación evoluciona un campo de vorticidad tridimensional en un dominio periódico, inicializado con un anillo vortical Gaussiano, e incluye una pequeña viscosidad y un término de forzado sinusoidal. El solvedor paraleliza los cálculos entre múltiples procesos usando MPI, con FFTs distribuidas mediante la librería `mpi4py`. El campo final de vorticidad (componente \( $\omega_z \$)) se visualiza como una representación volumétrica o de contornos en 3D.
 
 ### Cómo Funciona
 
 * **Física**: Se resuelven las ecuaciones de Navier-Stokes en 3D en forma de vorticidad:
-  \(\frac{\partial \boldsymbol{\omega}}{\partial t} + (\boldsymbol{\omega} \cdot \nabla) \mathbf{u} - (\mathbf{u} \cdot \nabla) \boldsymbol{\omega} = \nu \nabla^2 \boldsymbol{\omega} + \nabla \times \mathbf{f}\), donde \(\boldsymbol{\omega} = (\omega_x, \omega_y, \omega_z)\) es la vorticidad, \(\mathbf{u} = (u, v, w)\) es el campo de velocidad, \(\nu\) es la viscosidad, y \(\mathbf{f}\) es un término de forzado.
+  $\(\frac{\partial \boldsymbol{\omega}}{\partial t} + (\boldsymbol{\omega} \cdot \nabla) \mathbf{u} - (\mathbf{u} \cdot \nabla) \boldsymbol{\omega} = \nu \nabla^2 \boldsymbol{\omega} + \nabla \times \mathbf{f}\)$, donde $\(\boldsymbol{\omega} = (\omega_x, \omega_y, \omega_z)\)$ es la vorticidad, $\(\mathbf{u} = (u, v, w)\)$ es el campo de velocidad, $\(\nu\)$ es la viscosidad, y $\(\mathbf{f}\)$ es un término de forzado.
 * **Método Numérico**: Usa un método pseudo-espectral:
 
   * Las derivadas espaciales se calculan en el espacio de Fourier usando FFTs paralelas.
